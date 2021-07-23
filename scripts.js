@@ -25,18 +25,18 @@ const Modal = {
 
 const Storage = { // salver os dados no cookies do browser, aplicacap,storage
   get() {
-      return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []// transformando de string para arrays ou devolve um array vazio
+      return JSON.parse(localStorage.getItem("dev.finances:transactions")) || [] // transformando de string para arrays ou devolve um array vazio
   },
   set(transactions){
-    localStorage.setItem("dev.finances:transactions",transactions,JSON.stringify(transactions))// TRANSFORMANDO STRING EM ARRAYS
-  },
+    localStorage.setItem("dev.finances:transactions",JSON.stringify(transactions))// TRANSFORMANDO array para stings
+  }
 }
 
 
 // Eu preciso somar as entradas
 // depois eu preciso somar as saidas e remover das entradas o valor das saidas assim, eu terei o total 
 const Transaction = {
-  all:Storage.get(),
+       all: Storage.get(),
   /**all: [
     {
       
@@ -124,7 +124,7 @@ const DOM = {
   innerHTMlTransaction(transaction, index) {
     // ára cada um entra que eu quero vai ser essa funcao que eu vou usar
     // quando eu tenho a crase eu posso ter variavel dentro delas e fazer a interpolação
-    const CSSclass = transaction.amount > 0 ? "income" : "expense"; // metodo ternario curso da discovery
+    const CSSclass = transaction.amount > 0 ? "income" : "expense";// metodo ternario curso da discovery
 
     const amount = Utils.formatCurrency(transaction.amount);
     const html = ` 
